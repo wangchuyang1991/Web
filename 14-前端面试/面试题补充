@@ -1,2 +1,68 @@
 函数柯里化
+
+
 闭包
+
+
+跨域：
+
+================================================================
+jsonp（实际业务已经不太适用了）
+1，$.ajax({
+url:'http://xxxxx.8001/list',
+method:'get',
+dataType:'jsonp'   //执行的是jsonp请求
+success:res =>{
+console.log(res);
+}
+});
+
+let express = require('express'),
+    app = express();
+    app.listen(8001,_=>{
+    console.log('OK!');
+    });
+    app.get('/list',(req.res) =>{
+        let {
+             callback = Function.prototype
+        } = req.query;
+        let data={
+            code:0;
+            message:'培训'
+            };
+            res.send(`${callback}($
+    });
+  问题：jsonp跨域基于src资源请求，所以只能处理get请求；
+        安全性，存在劫持拦截的可能，不可靠。
+  =======================================================
+  
+  
+  CORS跨域资源共享
+  客户端发送axios、fetch请求
+  服务器端设置相关头信息（需要处理options试探请求）
+  
+  <script>
+  axios.get('http://127.0.0.1:3001/user/list')
+  .then(result =>{
+     console.log(result);
+  })
+  </script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
